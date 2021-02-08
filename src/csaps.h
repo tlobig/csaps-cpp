@@ -46,8 +46,8 @@ public:
   UnivariateCubicSmoothingSpline(const DoubleArray &xdata, const DoubleArray &ydata, double smooth);
   UnivariateCubicSmoothingSpline(const DoubleArray &xdata, const DoubleArray &ydata, const DoubleArray &weights, double smooth);
 
-  DoubleArray operator()(const DoubleArray &xidata);
-  DoubleArray operator()(const Size pcount, DoubleArray &xidata);
+  std::tuple<DoubleArray,DoubleArray,DoubleArray,DoubleArray> operator()(const DoubleArray &xidata);
+  std::tuple<DoubleArray,DoubleArray,DoubleArray,DoubleArray> operator()(const Size pcount, DoubleArray &xidata);
 
   double GetSmooth() const { return m_smooth; }
   const DoubleArray& GetBreaks() const { return m_xdata; }
@@ -56,7 +56,7 @@ public:
 
 protected:
   void MakeSpline();
-  DoubleArray Evaluate(const DoubleArray &xidata);
+  std::tuple<DoubleArray,DoubleArray,DoubleArray,DoubleArray> Evaluate(const DoubleArray &xidata);
 
 protected:
   DoubleArray m_xdata;
