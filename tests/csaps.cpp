@@ -32,7 +32,7 @@ TEST_CASE("Univariate auto smoothing", "[csaps]")
     csaps::UnivariateCubicSmoothingSpline sp(xdata, ydata);
 
     csaps::DoubleArray xidata;
-    csaps::DoubleArray yidata = sp(xidata_size, xidata);
+    csaps::DoubleArray yidata = std::get<0>(sp(xidata_size, xidata));
 
     csaps::DoubleArray desired_yidata(xidata_size);
     desired_yidata <<
@@ -85,7 +85,7 @@ TEST_CASE("Univariate auto smoothing", "[csaps]")
     const size_t xidata_size = 10;
 
     csaps::DoubleArray xidata;
-    csaps::DoubleArray yidata = sp(xidata_size, xidata);
+    csaps::DoubleArray yidata = std::get<0>(sp(xidata_size, xidata));
 
     csaps::DoubleArray desired_yidata(xidata_size);
     desired_yidata <<
@@ -107,7 +107,7 @@ TEST_CASE("Univariate auto smoothing", "[csaps]")
 
     csaps::UnivariateCubicSmoothingSpline sp(xdata, ydata);
 
-    csaps::DoubleArray yidata = sp(xidata);
+    csaps::DoubleArray yidata = std::get<0>(sp(xidata));
 
     csaps::DoubleArray desired_yidata(pcount + 1); 
     desired_yidata << 3., 3.5, 4.;
